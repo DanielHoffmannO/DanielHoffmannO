@@ -20,7 +20,8 @@ Minha linguagem de programação preferida atualmente é o CSharp.
 
 ## Projetos Mais Recentes 🚀
 Aqui estão alguns dos meus projetos mais recentes:
-| 1. [GeradorSenhasGpt](https://github.com/DanielHoffmannO/GeradorSenhasGpt) | 2. [FilmesApi](https://github.com/DanielHoffmannO/FilmesApi) | 3. [BarrasAleatorias](https://github.com/DanielHoffmannO/BarrasAleatorias)
+
+| [GeradorSenhasGpt](https://github.com/DanielHoffmannO/GeradorSenhasGpt) | [FilmesApi](https://github.com/DanielHoffmannO/FilmesApi) | [BarrasAleatorias](https://github.com/DanielHoffmannO/BarrasAleatorias)
 
 Sinta-se à vontade para explorar esses projetos e entrar em contato comigo através das seguintes redes sociais:
 
