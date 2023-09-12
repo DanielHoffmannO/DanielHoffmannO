@@ -1,6 +1,4 @@
 ### Hi there 👋
-## Daniel Hoffmann
-
 ## Sobre Mim
 Meu nome é Daniel Hoffmann e sou apaixonado por tecnologia desde que entrei para a equipe de robótica da minha escola aos 11 anos. Desde então, venho explorando diferentes aspectos da tecnologia e compartilhando meu conhecimento com os outros. Aqui estão algumas informações sobre mim:
 
