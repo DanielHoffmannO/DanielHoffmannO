@@ -15,9 +15,6 @@ Minhas paixões incluem eletrônica e programação 💻. Adoro criar coisas inc
 ## Mentoria e Julgamento de Competições 🤖
 Além disso, sou um orgulhoso Juiz de Arena em competições de robótica, onde tenho a oportunidade de compartilhar meu conhecimento e inspirar jovens a seguirem carreiras no mundo da tecnologia.
 
-## Minha Linguagem Favorita 🧩
-Minha linguagem de programação preferida atualmente é o CSharp.
-
 ## Projetos Mais Recentes 🚀
 Aqui estão alguns dos meus projetos mais recentes:
 
