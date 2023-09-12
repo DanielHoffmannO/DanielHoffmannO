@@ -13,3 +13,21 @@ Minhas áreas de interesse incluem eletrônica e programação. Adoro criar cois
 
 ## Mentoria e Juiz de Arena: 
 Também atuo como Juiz de Arena em competições de robótica, onde tenho a oportunidade de compartilhar meu conhecimento e inspirar jovens a seguir carreiras relacionadas à tecnologia.
+
+## Linguagem Mais Usada: 
+Minha linguagem de programação mais usada atualmente é [INSIRA AQUI SUA LINGUAGEM MAIS USADA, EXEMPLO: Python].
+
+## Projetos Recentes:
+Aqui estão alguns dos meus projetos mais recentes:
+
+1. [GeradorSenhasGpt](https://github.com/DanielHoffmannO/GeradorSenhasGpt)
+2. [FilmesApi](https://github.com/DanielHoffmannO/FilmesApi)
+3. [BarrasAleatorias](https://github.com/DanielHoffmannO/BarrasAleatorias)
+
+Fique à vontade para explorar esses projetos e entrar em contato comigo através das seguintes redes sociais:
+
+- [LinkedIn](https://www.linkedin.com/in/daniel-hoffmann-bonicio/)
+- [Instagram](https://www.instagram.com/daniel_hoffmann.b/)
+- [Outlook](daniel2001hoffmann@gmail.com)
+
+Se tiver alguma pergunta ou interesse em colaborar em algum projeto, não hesite em me contatar!
