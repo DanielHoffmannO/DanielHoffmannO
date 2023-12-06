@@ -5,13 +5,9 @@
 
 body {
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Consolas', monospace;
     background-color: #1F1F1F;
     color: #F6F6F6;
-}
-
-.cmd {
-    display: block;
 }
 
 .cmd {
