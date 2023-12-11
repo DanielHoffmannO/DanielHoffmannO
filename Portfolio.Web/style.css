@@ -11,13 +11,12 @@ body {
 header {
     display: flex;
     align-items: center;
-    font-size: 15px;
     background-color: #000000;
 }
 
 header img {
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
     margin-right: 7px;
     margin-left: 7px;
 }
@@ -29,6 +28,7 @@ main {
 
 main h1 {
     font-size: 32px;
+    white-space: nowrap;
 }
 
 main h2 {
@@ -38,8 +38,8 @@ main h2 {
 
 main img {
     padding: 0% 3% 0% 0%;
-    width: 30%;
-    height: 30%;
+    width: 25%;
+    height: 25%;
 }
 
 section {
@@ -48,11 +48,11 @@ section {
 }
 
 nav {
-    padding: 5% 0% 0% 5%;
+    padding: 35% 0% 0% 20%;
 }
 
 nav a {
-    line-height: 2;
+    line-height: 2.5;
     display: block;
     text-decoration: none;
     position: relative;
@@ -69,6 +69,7 @@ nav a:hover::before {
 }
 
 p {
-    padding: 10% 5% 10% 15%;
-    font-size: 16px;
+    text-align: justify;
+    padding: 8% 8% 5% 5%;
+    font-size: 18px;
 }
