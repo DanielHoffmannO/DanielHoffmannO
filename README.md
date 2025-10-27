@@ -1,5 +1,5 @@
 # Daniel Hoffmann  👨‍💻  
-**Desenvolvedor Full Stack | Ex-Campeão Internacional de Robótica**  
+**Desenvolvedor Full Stack**  
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/daniel-hoffmann-bonicio/)
 [![Email](https://img.shields.io/badge/Email-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white)](mailto:daniel2001hoffmann@outlook.com)
