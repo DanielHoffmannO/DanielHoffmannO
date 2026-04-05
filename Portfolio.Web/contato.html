@@ -1,45 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daniel Hoffmann</title>
-  <link rel="stylesheet" href="./style.css">
+  <title>~ contato</title>
+  <meta name="description" content="Contato de Daniel Hoffmann">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <header>
-    <img src="./assets/logoCmd.png" alt="logoCmd">
-    C:\Windows\system64\DanielHoffmann\Home.html
+
+  <header class="top-bar">
+    <div class="prompt-left">
+      <span class="user">user</span><span class="sep">@</span><span class="host">portfolio</span>
+      <span class="sep">:</span><span class="path">~/contato</span>
+    </div>
+    <nav class="top-bar-nav">
+      <a href="Home.html">home</a>
+      <a href="sobre.html">sobre</a>
+      <a href="projetos.html">projetos</a>
+      <a href="contato.html" class="active">contato</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn">menu</button>
   </header>
 
-  <main>
-    <div>
-      <h1>Daniel Hoffmann</h1>
-      <h2>Desenvolvedor Full Stack</h2>
-      <nav>
-        <a href="Home.html">Home</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="projetos.html">Projetos</a>
-        <a href="contato.html">Contato</a>
-      </nav>
-    </div>
-    <p>
-      Olá! Meu nome é Daniel Hoffmann e sou apaixonado por tecnologia.
-      Tudo começou com minha seleção para a equipe de robótica na escola aos 11 anos.
-      Participei de programas internacionais como FLL e OBR para estimular o interesse
-      dos jovens em ciência e tecnologia, ganhando prêmios significativos,
-      incluindo 2º lugar na etapa mundial nos EUA, 1º lugar na Espanha e 3º lugar na Europa.
-      Fundei uma iniciativa para ensinar programação e eletrônica para jovens por três anos.
-      Atualmente sou estudante de Análise e Desenvolvimento de Sistemas no 5º semestre.
-      Meu interesse inclui eletrônica, programação, modelagem 3D e tudo o que envolve a
-      Cultura Maker. Aprendo por conta própria e atuo como Juiz de Arena em campeonatos de
-      robótica para compartilhar meu conhecimento. Amo tecnologia, programação e eletrônica.
-    </p>
-    <img src="./assets/danielCaractere.png" alt="foto caractere">
-  </main>
-</body>
+  <nav class="side-nav" id="sideNav">
+    <a href="Home.html">home</a>
+    <a href="sobre.html">sobre</a>
+    <a href="projetos.html">projetos</a>
+    <a href="contato.html" class="active">contato</a>
+  </nav>
 
+  <main class="page">
+    <div class="term">
+
+      <!-- Command -->
+      <div class="reveal r0">
+        <div class="term-line">
+          <span class="prompt-user">user</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-sign-prompt">$</span>
+          <span class="cmd">cat contato.txt</span>
+          <span class="cursor"></span>
+        </div>
+        <div class="sep-line"><span style="color:var(--muted);">─────────────────────────────────────────────</span></div>
+      </div>
+
+      <!-- Contact grid -->
+      <div class="contact-grid">
+
+        <a href="mailto:daniel2001hoffmann@outlook.com" class="contact-item reveal r1">
+          <div class="ci-label">e-mail</div>
+          <div class="ci-value">daniel2001hoffmann@outlook.com</div>
+          <div class="ci-path">mail --to daniel</div>
+        </a>
+
+        <a id="ciLinkedin" href="#" target="_blank" rel="noopener" class="contact-item reveal r1">
+          <div class="ci-label">linkedin</div>
+          <div class="ci-value">daniel-hoffmann-bonicio</div>
+          <div class="ci-path">open linkedin</div>
+        </a>
+
+        <a id="ciGithub" href="#" target="_blank" rel="noopener" class="contact-item reveal r2">
+          <div class="ci-label">github</div>
+          <div class="ci-value">/home/user/GitHub</div>
+          <div class="ci-path">open github</div>
+        </a>
+
+        <div class="contact-item reveal r2">
+          <div class="ci-label">localizacao</div>
+          <div class="ci-value">Brasil</div>
+          <div class="ci-path">uname -o</div>
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="contact-cta reveal r3">
+        <p style="color:var(--green);">$</p>
+        <p>Tem uma proposta ou projeto em mente? Mande um e-mail.</p>
+        <a href="mailto:daniel2001hoffmann@outlook.com" style="color:var(--amber);font-size:15px;">
+          >> enviar e-mail para daniel2001hoffmann@outlook.com
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">© 2026 — Daniel Hoffmann</footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script>
+    /* Populate dynamic links from config */
+    (function () {
+      if (typeof CONFIG === 'undefined') return;
+      var li = document.getElementById('ciLinkedin');
+      var gh = document.getElementById('ciGithub');
+      if (li && CONFIG.linkedinUrl) li.href = CONFIG.linkedinUrl;
+      if (gh && CONFIG.githubUsername) gh.href = 'https://github.com/' + CONFIG.githubUsername;
+    })();
+  </script>
+</body>
 </html>
