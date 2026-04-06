@@ -5,17 +5,20 @@
   function setupCmdBar(){
     var term=D.querySelector('.term');if(!term)return;
     var bar=D.createElement('div');bar.id='cmdBar';
-    bar.innerHTML='<div class="sep-line"><span style="color:var(--muted)">─────────────────────────────────────────────</span></div><div class="term-line"><span style="color:var(--muted)"># comandos disponiveis: whoami, help, clear</span></div><div class="cmd-output" id="cmdO"></div><div class="cmd-input-line"><span style="color:var(--green);font-weight:700">user</span><span style="color:var(--muted)">@portfolio:</span><span style="color:var(--cyan)">~</span><span style="color:var(--muted)">$</span> <input type="text" id="cmdI" autocomplete="off" spellcheck="false" placeholder="comando..."><span class="cursor"></span></div>';
+    var u=typeof CONFIG!=='undefined'&&CONFIG.terminalUser?CONFIG.terminalUser:'daniel';
+    bar.innerHTML='<div class="sep-line"><span style="color:var(--muted)">─────────────────────────────────────────────</span></div><div class="term-line"><span style="color:var(--muted)"># comandos disponiveis: whoami, help, clear</span></div><div class="cmd-output" id="cmdO"></div><div class="cmd-input-line"><span style="color:var(--green);font-weight:700">'+u+'</span><span style="color:var(--muted)">@portfolio:</span><span style="color:var(--cyan)">~</span><span style="color:var(--muted)">$</span> <input type="text" id="cmdI" autocomplete="off" spellcheck="false" placeholder="comando..."><span class="cursor"></span></div>';
     term.appendChild(bar);
 
     var inp=D.getElementById('cmdI'),out=D.getElementById('cmdO');if(!inp||!out)return;
 
-    var CMDS={help:function(){return'Comandos disponiveis:\n  whoami  — exibe o usuario atual\n  help    — mostra esta mensagem\n  clear   — limpa a saida'},whoami:function(){return'user'},clear:function(){out.textContent='';return null}};
+    var terminalUser=typeof CONFIG!=='undefined'&&CONFIG.terminalUser?CONFIG.terminalUser:'daniel';
+    var CMDS={help:function(){return'Comandos disponiveis:\n  whoami  — exibe o usuario atual\n  help    — mostra esta mensagem\n  clear   — limpa a saida'},whoami:function(){return terminalUser},clear:function(){out.textContent='';return null}};
 
     inp.addEventListener('keydown',function(e){
       if(e.key!=='Enter')return;e.preventDefault();
       var c=inp.value.trim().toLowerCase();inp.value='';if(!c)return;
-      var line='<span class="cmd-line"><span style="color:var(--green);font-weight:700">user</span><span style="color:var(--muted)">@portfolio:</span><span style="color:var(--cyan)">~</span><span style="color:var(--muted)">$</span> '+c+'</span>';
+      var u2=typeof CONFIG!=='undefined'&&CONFIG.terminalUser?CONFIG.terminalUser:'daniel';
+      var line='<span class="cmd-line"><span style="color:var(--green);font-weight:700">'+u2+'</span><span style="color:var(--muted)">@portfolio:</span><span style="color:var(--cyan)">~</span><span style="color:var(--muted)">$</span> '+c+'</span>';
       var h=CMDS[c]||null;
       var o=h?h():'comando nao encontrado: "'+c+'"\nDigite "help" para ver os comandos.';
       out.innerHTML+=(o!==null?line+'\n'+esc(o)+'\n\n':line+'\n');
