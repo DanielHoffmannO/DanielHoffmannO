@@ -2,37 +2,42 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="Projetos de Daniel Hoffmann">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos — Daniel Hoffmann</title>
+  <meta name="description" content="Repositórios e projetos open source de Daniel Hoffmann no GitHub.">
+  <meta name="author" content="Daniel Hoffmann">
+  <link rel="canonical" href="https://danielhoffmanno.github.io/DanielHoffmannO/projetos.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <header class="top-bar">
-    <div class="prompt-left"><span class="prompt-user user">user</span><span class="sep">@</span><span class="host">portfolio</span><span class="sep">:</span><span class="path">~/projetos</span></div>
-    <nav class="top-bar-nav">
-      <a href="index.html">home</a><a href="sobre.html">sobre</a><a href="projetos.html" class="active">projetos</a><a href="contato.html">contato</a>
+<body data-page="projetos" data-path="~/projetos">
+  <noscript>
+    <nav style="padding:16px;font-family:monospace">
+      <a href="index.html">home</a> | <a href="sobre.html">sobre</a> | <a href="projetos.html">projetos</a> | <a href="contato.html">contato</a>
     </nav>
-    <button class="menu-btn" id="menuBtn">menu</button>
-  </header>
-  <nav class="side-nav" id="sideNav">
-    <a href="index.html">home</a><a href="sobre.html">sobre</a><a href="projetos.html" class="active">projetos</a><a href="contato.html">contato</a>
-  </nav>
+  </noscript>
+
   <main class="page">
     <div class="term">
-      <div class="reveal r0">
-        <div class="term-line"><span class="prompt-user">user</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-sign-prompt">$</span><span class="cmd">ls -la ./projetos/</span><span class="cursor"></span></div>
+      <div class="reveal" aria-hidden="true">
+        <div class="term-line">
+          <span class="prompt-user">daniel</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-sign-prompt">$</span>
+          <span class="cmd">ls -la ./projetos/</span><span class="cursor"></span>
+        </div>
       </div>
-      <div class="sep-line"><span style="color:var(--muted)">─────────────────────────────────────────────</span></div>
-      <div class="loading-cursor" id="loadingRepos">fetching repos from <span style="color:var(--green)"></span>...</div>
-      <div class="error-msg" id="errorRepos" style="display:none"></div>
-      <div id="repoList"></div>
+      <div class="sep-line" aria-hidden="true"><span class="text-muted"># ============================================</span></div>
+
+      <section aria-label="Lista de repositórios GitHub">
+        <div class="loading-cursor" id="loadingRepos" role="status" aria-live="polite">fetching repos...</div>
+        <div class="error-msg" id="errorRepos" style="display:none" role="alert"></div>
+        <div id="repoList"></div>
+      </section>
     </div>
   </main>
-  <footer class="footer">© 2026 — Daniel Hoffmann</footer>
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+
+  <script src="js/bootstrap.js"></script>
 </body>
 </html>

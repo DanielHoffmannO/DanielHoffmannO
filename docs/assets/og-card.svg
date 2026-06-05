@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <text x="100" y="220" font-family="monospace" font-size="64" font-weight="700" fill="#00ff41">Daniel Hoffmann</text>
+  <text x="100" y="300" font-family="monospace" font-size="32" fill="#777">Desenvolvedor Full Stack</text>
+  <text x="100" y="380" font-family="monospace" font-size="24" fill="#555">C# / .NET · Clean Architecture · DDD · Microsserviços</text>
+  <text x="100" y="430" font-family="monospace" font-size="24" fill="#555">5 anos Havan · 3 títulos internacionais em robótica</text>
+  <text x="100" y="540" font-family="monospace" font-size="20" fill="#00ff41">daniel<tspan fill="#555">@</tspan><tspan fill="#ffb000">portfolio</tspan><tspan fill="#555">:~$</tspan></text>
+</svg>
