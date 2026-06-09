@@ -33,13 +33,3 @@ Desde os 13 anos mergulhado no mundo da tecnologia, comecei minha jornada na rob
 
 ### Embarcados & IoT
 <img height="30" src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white"> <img height="30" src="https://img.shields.io/badge/ESP32-E7352C?style=for-the-badge&logo=espressif&logoColor=white"> <img height="30" src="https://img.shields.io/badge/STM32-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white"> <img height="30" src="https://img.shields.io/badge/KiCad-314CB0?style=for-the-badge&logo=kicad&logoColor=white"> <img height="30" src="https://img.shields.io/badge/Fusion%20360-0696D7?style=for-the-badge&logo=autodesk&logoColor=white">
-
-## Projetos Relevantes 🚀
-
-| Projeto | Tecnologias | Objetivo |
-|---------|------------|----------|
-| [CofreSenhas](https://github.com/DanielHoffmannO/CofreSenhas) | .NET/React | Gerenciador seguro de senhas com gerador inteligente e JWT |
-| [FilmesAPI](https://github.com/DanielHoffmannO/FilmesApi) | .NET | API para gerenciar filmes (CRUD, marcar assistido, Swagger) |
-| [SaudeConectada](https://github.com/DanielHoffmannO/SaudeConectada) | .NET/React | Sistema de telemedicina com agendamento e gestão |
-| [TerminalArte](https://github.com/DanielHoffmannO/TerminalArte) | .NET | Exibe arte e animações no terminal |
-| [TruCoNsole](https://github.com/DanielHoffmannO/TruCoNsole) | .NET | Gera, organiza e embaralha barras aleatórias |
