@@ -7,6 +7,7 @@ initDynamicYears();
 initMenu();
 initReveal();
 initRepos();
+initCerts();
 initContactLinks();
 
 function initContactLinks() {

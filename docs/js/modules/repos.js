@@ -18,10 +18,36 @@ function initRepos() {
   const username = CONFIG.github.username;
   const loading = document.getElementById('loadingRepos');
   const error = document.getElementById('errorRepos');
+  const filtersEl = document.getElementById('projectFilters');
+  const countEl = document.getElementById('projectCount');
   const featuredSet = new Set(CONFIG.github.featuredRepos.map((n) => n.toLowerCase()));
+
+  let allRepos = [];
+  let activeFilter = 'all';
 
   if (loading) {
     loading.innerHTML = `fetching repos from <span class="text-green">${username}</span> ...`;
+  }
+
+  function renderFilters(repos) {
+    if (!filtersEl) return;
+    const langs = [...new Set(repos.map((r) => r.language).filter(Boolean))].sort();
+    const btns = langs.map((l) => `<button class="filter-btn" data-lang="${l}">${l}</button>`).join('');
+    filtersEl.innerHTML = `<button class="filter-btn active" data-lang="all">todos</button>${btns}`;
+    filtersEl.querySelectorAll('.filter-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filtersEl.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.lang;
+        renderList();
+      });
+    });
+  }
+
+  function renderList() {
+    const filtered = activeFilter === 'all' ? allRepos : allRepos.filter((r) => r.language === activeFilter);
+    if (countEl) countEl.textContent = `# ${filtered.length} repositório${filtered.length !== 1 ? 's' : ''}`;
+    list.innerHTML = filtered.map((repo, i) => renderRepo(repo, i, featuredSet)).join('');
   }
 
   getRepos(username)
@@ -37,7 +63,9 @@ function initRepos() {
         if (af !== bf) return bf - af;
         return new Date(b.pushed_at) - new Date(a.pushed_at);
       });
-      list.innerHTML = repos.map((repo, i) => renderRepo(repo, i, featuredSet)).join('');
+      allRepos = repos;
+      renderFilters(repos);
+      renderList();
     })
     .catch((err) => {
       if (loading) loading.style.display = 'none';

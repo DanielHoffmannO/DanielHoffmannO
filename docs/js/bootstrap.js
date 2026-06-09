@@ -4,12 +4,14 @@
   const scripts = [
     'js/config.js',
     'js/i18n-data.js',
+    'js/certs-data.js',
     'js/modules/layout.js',
     'js/modules/theme.js',
     'js/modules/i18n.js',
     'js/modules/menu.js',
     'js/modules/reveal.js',
     'js/modules/repos.js',
+    'js/modules/certs.js',
     'js/app.js',
   ];
 

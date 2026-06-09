@@ -10,6 +10,7 @@ function initLayout() {
     { href: 'index.html', label: 'home', id: 'home', i18n: 'nav.home' },
     { href: 'sobre.html', label: 'sobre', id: 'sobre', i18n: 'nav.sobre' },
     { href: 'projetos.html', label: 'projetos', id: 'projetos', i18n: 'nav.projetos' },
+    { href: 'certificados.html', label: 'certificados', id: 'certificados', i18n: 'nav.certificados' },
     { href: 'contato.html', label: 'contato', id: 'contato', i18n: 'nav.contato' },
   ];
 

@@ -1,0 +1,88 @@
+'use strict';
+
+const CERTS_DATA = [
+  {
+    title: 'C# - Aplicando a Orientação a Objetos',
+    issuer: 'Alura',
+    date: '2024',
+    category: 'backend',
+    url: 'https://cursos.alura.com.br/user/daniel2001hoffmann',
+  },
+  {
+    title: 'C# - Dominando Programação Orientada a Objetos',
+    issuer: 'Alura',
+    date: '2024',
+    category: 'backend',
+    url: 'https://cursos.alura.com.br/user/daniel2001hoffmann',
+  },
+  {
+    title: '.NET - Persistindo Dados com Entity Framework Core',
+    issuer: 'Alura',
+    date: '2024',
+    category: 'backend',
+    url: 'https://cursos.alura.com.br/user/daniel2001hoffmann',
+  },
+  {
+    title: 'APIs REST com .NET 8',
+    issuer: 'Alura',
+    date: '2024',
+    category: 'backend',
+    url: 'https://cursos.alura.com.br/user/daniel2001hoffmann',
+  },
+  {
+    title: 'Clean Architecture com .NET',
+    issuer: 'Alura',
+    date: '2024',
+    category: 'backend',
+    url: 'https://cursos.alura.com.br/user/daniel2001hoffmann',
+  },
+  {
+    title: 'Git e GitHub',
+    issuer: 'Alura',
+    date: '2024',
+    category: 'devops',
+    url: 'https://cursos.alura.com.br/user/daniel2001hoffmann',
+  },
+  {
+    title: 'Docker - Criando e Gerenciando Containers',
+    issuer: 'Alura',
+    date: '2024',
+    category: 'devops',
+    url: 'https://cursos.alura.com.br/user/daniel2001hoffmann',
+  },
+  {
+    title: 'SQL com PostgreSQL',
+    issuer: 'Alura',
+    date: '2024',
+    category: 'backend',
+    url: 'https://cursos.alura.com.br/user/daniel2001hoffmann',
+  },
+  {
+    title: 'HTML5 e CSS3',
+    issuer: 'Alura',
+    date: '2023',
+    category: 'frontend',
+    url: 'https://cursos.alura.com.br/user/daniel2001hoffmann',
+  },
+  {
+    title: 'JavaScript - Programação Orientada a Objetos',
+    issuer: 'Alura',
+    date: '2023',
+    category: 'frontend',
+    url: 'https://cursos.alura.com.br/user/daniel2001hoffmann',
+  },
+  {
+    title: 'Robótica Competitiva - FIRST Robotics Competition',
+    issuer: 'FIRST',
+    date: '2019',
+    category: 'robotica',
+    url: '',
+  },
+  {
+    title: 'Campeonato Mundial de Robótica - Houston, TX',
+    issuer: 'FIRST',
+    date: '2019',
+    category: 'robotica',
+    url: '',
+  },
+];
