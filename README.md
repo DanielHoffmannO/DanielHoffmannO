@@ -5,7 +5,7 @@
 [![Email](https://img.shields.io/badge/Email-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white)](mailto:daniel2001hoffmann@outlook.com)
 
 ## Sobre  
-Desde os 11 anos mergulhado no mundo da tecnologia, comecei minha jornada na robótica escolar e nunca mais parei! Apaixonado por resolver problemas através do código e compartilhar conhecimento com a comunidade tech.  
+Desde os 13 anos mergulhado no mundo da tecnologia, comecei minha jornada na robótica escolar e nunca mais parei! Apaixonado por resolver problemas através do código e compartilhar conhecimento com a comunidade tech.  
 📺 Veja minha entrevista na [Globo](https://www.youtube.com/watch?v=UgN4oar-Vvg) e no [Canal Futura](https://www.youtube.com/watch?v=q953WxfDzF8)  
 
 ## Minha Jornada 🌍
@@ -35,8 +35,11 @@ Desde os 11 anos mergulhado no mundo da tecnologia, comecei minha jornada na rob
 <img height="30" src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white"> <img height="30" src="https://img.shields.io/badge/ESP32-E7352C?style=for-the-badge&logo=espressif&logoColor=white"> <img height="30" src="https://img.shields.io/badge/STM32-03234B?style=for-the-badge&logo=stmicroelectronics&logoColor=white"> <img height="30" src="https://img.shields.io/badge/KiCad-314CB0?style=for-the-badge&logo=kicad&logoColor=white"> <img height="30" src="https://img.shields.io/badge/Fusion%20360-0696D7?style=for-the-badge&logo=autodesk&logoColor=white">
 
 ## Projetos Relevantes 🚀
-| Projeto | Tecnologias | Objetivo | Links |
-|---------|------------|---------|-------|
-| SenhasGPT | .NET/React | Gerenciamento de segurança | [API](https://github.com/DanielHoffmannO/SenhasGpt.Api) • [Web](https://github.com/DanielHoffmannO/SenhasGpt.Web) |
-| FilmesAPI | .NET | Gerenciamento de conteúdo | [Repositório](https://github.com/DanielHoffmannO/FilmesApi) |
-| BarrasAleatórias | Python | Ferramenta utilitária | [Repositório](https://github.com/DanielHoffmannO/BarrasAleatorias) |
+
+| Projeto | Tecnologias | Objetivo |
+|---------|------------|----------|
+| [CofreSenhas](https://github.com/DanielHoffmannO/CofreSenhas) | .NET/React | Gerenciador seguro de senhas com gerador inteligente e JWT |
+| [FilmesAPI](https://github.com/DanielHoffmannO/FilmesApi) | .NET | API para gerenciar filmes (CRUD, marcar assistido, Swagger) |
+| [SaudeConectada](https://github.com/DanielHoffmannO/SaudeConectada) | .NET/React | Sistema de telemedicina com agendamento e gestão |
+| [TerminalArte](https://github.com/DanielHoffmannO/TerminalArte) | .NET | Exibe arte e animações no terminal |
+| [TruCoNsole](https://github.com/DanielHoffmannO/TruCoNsole) | .NET | Gera, organiza e embaralha barras aleatórias |
