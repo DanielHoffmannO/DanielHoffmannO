@@ -3,7 +3,7 @@
 const CONFIG = Object.freeze({
   github: {
     username: 'DanielHoffmannO',
-    featuredRepos: ['SenhasGpt.Api', 'SenhasGpt.Web', 'FilmesApi', 'BarrasAleatorias'],
+    featuredRepos: [' CofreSenhas', 'SaudeConectada', 'FilmesApi', 'PrevisaoCompras'],
   },
   social: {
     linkedin: 'https://www.linkedin.com/in/daniel-hoffmann-bonicio/',
