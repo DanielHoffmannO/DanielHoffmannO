@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danielhoffmanno.github.io/DanielHoffmannO/sitemap.xml
