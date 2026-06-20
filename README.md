@@ -3,6 +3,7 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/daniel-hoffmann-bonicio/)
 [![Email](https://img.shields.io/badge/Email-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white)](mailto:daniel2001hoffmann@outlook.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-0a0a0a?style=for-the-badge&logo=github-pages&logoColor=00ff41)](https://danielhoffmanno.github.io/DanielHoffmannO/)
 
 ## Sobre  
 Desde os 13 anos mergulhado no mundo da tecnologia, comecei minha jornada na robótica escolar e nunca mais parei! Apaixonado por resolver problemas através do código e compartilhar conhecimento com a comunidade tech.  
