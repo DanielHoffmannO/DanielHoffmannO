@@ -16,8 +16,11 @@ function initLayout() {
 
   // Chat IA: só aparece se o serviço estiver online
   const chatUrl = 'https://daniel-chat-api.vercel.app/';
-  fetch(chatUrl + 'api/health', { signal: AbortSignal.timeout(3000) })
-    .then(r => { if (r.ok) addChatLink(chatUrl); })
+  const ctrl = new AbortController();
+  setTimeout(() => ctrl.abort(), 3000);
+  fetch(chatUrl + 'api/health', { signal: ctrl.signal })
+    .then(r => { if (r.ok) return r.json(); throw new Error(); })
+    .then(() => addChatLink(chatUrl))
     .catch(() => {});
 
   const navLinks = nav.map((n) => {
