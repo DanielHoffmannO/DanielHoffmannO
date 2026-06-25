@@ -14,6 +14,12 @@ function initLayout() {
     { href: 'contato.html', label: 'contato', id: 'contato', i18n: 'nav.contato' },
   ];
 
+  // Chat IA: só aparece se o serviço estiver online
+  const chatUrl = 'https://daniel-chat-api.vercel.app/';
+  fetch(chatUrl + 'api/health', { signal: AbortSignal.timeout(3000) })
+    .then(r => { if (r.ok) addChatLink(chatUrl); })
+    .catch(() => {});
+
   const navLinks = nav.map((n) => {
     const active = n.id === page;
     return `<a href="${n.href}" data-i18n="${n.i18n}"${active ? ' class="active" aria-current="page"' : ''}>${n.label}</a>`;
@@ -49,4 +55,21 @@ function initLayout() {
   document.body.prepend(sideNav);
   document.body.prepend(header);
   document.body.appendChild(footer);
+}
+
+function addChatLink(url) {
+  const link = document.createElement('a');
+  link.href = url;
+  link.target = '_blank';
+  link.textContent = '🤖 chat-ia';
+  link.style.animation = 'fadeIn 0.3s ease';
+
+  const topNav = document.querySelector('.top-bar-nav');
+  if (topNav) topNav.appendChild(link);
+
+  const sideNav = document.getElementById('sideNav');
+  if (sideNav) sideNav.appendChild(link.cloneNode(true));
+
+  const homeLink = document.getElementById('chat-link');
+  if (homeLink) homeLink.style.display = '';
 }
