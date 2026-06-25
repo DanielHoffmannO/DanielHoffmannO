@@ -64,7 +64,7 @@ function addChatLink(url) {
   const link = document.createElement('a');
   link.href = url;
   link.target = '_blank';
-  link.textContent = '🤖 chat-ia';
+  link.textContent = 'chat-ia';
   link.style.animation = 'fadeIn 0.3s ease';
 
   const topNav = document.querySelector('.top-bar-nav');
