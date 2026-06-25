@@ -20,7 +20,7 @@ function initLayout() {
   setTimeout(() => ctrl.abort(), 3000);
   fetch(chatUrl + 'api/health', { signal: ctrl.signal })
     .then(r => { if (r.ok) return r.json(); throw new Error(); })
-    .then(() => addChatLink(chatUrl))
+    .then(() => addChatLink('chat.html'))
     .catch(() => {});
 
   const navLinks = nav.map((n) => {
@@ -63,9 +63,7 @@ function initLayout() {
 function addChatLink(url) {
   const link = document.createElement('a');
   link.href = url;
-  link.target = '_blank';
   link.textContent = 'chat-ia';
-  link.style.animation = 'fadeIn 0.3s ease';
 
   const topNav = document.querySelector('.top-bar-nav');
   if (topNav) topNav.appendChild(link);
