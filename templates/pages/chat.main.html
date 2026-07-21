@@ -1,0 +1,21 @@
+  <main class="page">
+    <div class="chat-container" id="chat-app" style="display:none">
+      <div class="chat-header">
+        <div class="term-line" aria-hidden="true">
+          <span class="prompt-user">daniel</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~/chat</span><span class="prompt-sign-prompt">$</span>
+          <span class="cmd">./ask-ai --about daniel</span><span class="cursor"></span>
+        </div>
+      </div>
+      <div class="chat-messages" id="messages"></div>
+      <div class="chat-suggestions" id="suggestions">
+        <button onclick="send('Quais tecnologias ele usa?')">$ tech --stack</button>
+        <button onclick="send('Fale sobre a robótica')">$ cat robotica.log</button>
+        <button onclick="send('Qual a formação dele?')">$ cat formacao.txt</button>
+        <button onclick="send('Quais projetos ele tem?')">$ ls projetos/</button>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="input" placeholder="digite sua pergunta..." autocomplete="off">
+        <button id="send-btn" onclick="sendInput()">enviar</button>
+      </div>
+    </div>
+  </main>

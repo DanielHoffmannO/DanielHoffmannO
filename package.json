@@ -1,0 +1,7 @@
+{
+  "name": "danielhoffmanno-portfolio",
+  "private": true,
+  "scripts": {
+    "build": "node templates/build.js"
+  }
+}
