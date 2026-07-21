@@ -18,16 +18,14 @@
   function addMsg(type, text) {
     const div = document.createElement('div');
     div.className = 'chat-msg ' + type;
-    div.innerHTML = type === 'bot' ? fmt(text) : esc(text);
+    div.innerHTML = type === 'bot' ? fmt(text) : escapeHtml(text);
     msgs.appendChild(div);
     msgs.scrollTop = msgs.scrollHeight;
   }
 
   function fmt(t) {
-    return esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>').replace(/^- (.+)/gm, '• $1').replace(/\n/g, '<br>');
+    return escapeHtml(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>').replace(/^- (.+)/gm, '• $1').replace(/\n/g, '<br>');
   }
-
-  function esc(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
 
   function showTyping() {
     const div = document.createElement('div');

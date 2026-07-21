@@ -1,0 +1,24 @@
+  <main class="page">
+    <div class="term">
+      <div class="reveal" aria-hidden="true">
+        <div class="term-line">
+          <span class="prompt-user">daniel</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-sign-prompt">$</span>
+          <span class="cmd">ls ./certificados/ --group-by=categoria</span><span class="cursor"></span>
+        </div>
+      </div>
+      <div class="sep-line" aria-hidden="true"><span class="text-muted"># ============================================</span></div>
+
+      <section aria-label="Filtros de certificados">
+        <div class="cert-filters reveal">
+          <button class="filter-btn active" data-filter="all">todos</button>
+          <button class="filter-btn" data-filter="backend">backend</button>
+          <button class="filter-btn" data-filter="frontend">frontend</button>
+        </div>
+        <div class="cert-count reveal" id="certCount"></div>
+      </section>
+
+      <section aria-label="Lista de certificados">
+        <div id="certList"></div>
+      </section>
+    </div>
+  </main>

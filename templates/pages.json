@@ -1,0 +1,86 @@
+[
+  {
+    "file": "index.html",
+    "dataPage": "home",
+    "dataPath": "~",
+    "title": "Daniel Hoffmann — Desenvolvedor Full Stack",
+    "desc": "Portfolio de Daniel Hoffmann — Desenvolvedor Full Stack com experiência em C#/.NET, Clean Architecture e robótica competitiva internacional.",
+    "ogDesc": "Desenvolvedor Full Stack com experiência em C#/.NET, Clean Architecture e robótica competitiva internacional.",
+    "canonical": "https://danielhoffmanno.github.io/DanielHoffmannO/",
+    "seo": true,
+    "ogLocale": true,
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Daniel Hoffmann",
+      "url": "https://danielhoffmanno.github.io/DanielHoffmannO/",
+      "jobTitle": "Desenvolvedor Full Stack",
+      "alumniOf": "UNINTER",
+      "sameAs": [
+        "https://www.linkedin.com/in/daniel-hoffmann-bonicio/",
+        "https://github.com/DanielHoffmannO"
+      ]
+    },
+    "scripts": ["js/main.js"]
+  },
+  {
+    "file": "sobre.html",
+    "dataPage": "sobre",
+    "dataPath": "~/sobre",
+    "title": "Sobre — Daniel Hoffmann",
+    "desc": "Experiência profissional, formação acadêmica e stack técnica de Daniel Hoffmann.",
+    "canonical": "https://danielhoffmanno.github.io/DanielHoffmannO/sobre.html",
+    "seo": true,
+    "scripts": ["js/main.js"]
+  },
+  {
+    "file": "projetos.html",
+    "dataPage": "projetos",
+    "dataPath": "~/projetos",
+    "title": "Projetos — Daniel Hoffmann",
+    "desc": "Repositórios e projetos open source de Daniel Hoffmann no GitHub.",
+    "canonical": "https://danielhoffmanno.github.io/DanielHoffmannO/projetos.html",
+    "seo": true,
+    "scripts": ["js/modules/repos.js", "js/main.js"]
+  },
+  {
+    "file": "certificados.html",
+    "dataPage": "certificados",
+    "dataPath": "~/certificados",
+    "title": "Certificados — Daniel Hoffmann",
+    "desc": "Certificados e cursos concluídos por Daniel Hoffmann em desenvolvimento, DevOps e robótica.",
+    "canonical": "https://danielhoffmanno.github.io/DanielHoffmannO/certificados.html",
+    "seo": true,
+    "scripts": ["js/certs-data.js", "js/modules/certs.js", "js/main.js"]
+  },
+  {
+    "file": "contato.html",
+    "dataPage": "contato",
+    "dataPath": "~/contato",
+    "title": "Contato — Daniel Hoffmann",
+    "desc": "Entre em contato com Daniel Hoffmann — e-mail, WhatsApp, LinkedIn, GitHub e download de currículo.",
+    "canonical": "https://danielhoffmanno.github.io/DanielHoffmannO/contato.html",
+    "seo": true,
+    "scripts": ["js/main.js"]
+  },
+  {
+    "file": "chat.html",
+    "dataPage": "chat",
+    "dataPath": "~/chat",
+    "title": "Chat IA — Daniel Hoffmann",
+    "desc": "Chat com IA sobre Daniel Hoffmann — experiência, projetos e formação.",
+    "ogDesc": "Converse com uma IA sobre a experiência profissional de Daniel Hoffmann.",
+    "canonical": "https://danielhoffmanno.github.io/DanielHoffmannO/chat.html",
+    "seo": true,
+    "scripts": ["js/main.js", "js/chat.js"]
+  },
+  {
+    "file": "404.html",
+    "dataPage": "404",
+    "dataPath": "~/404",
+    "title": "404 — Daniel Hoffmann",
+    "desc": "Página não encontrada.",
+    "seo": false,
+    "scripts": ["js/main.js"]
+  }
+]
