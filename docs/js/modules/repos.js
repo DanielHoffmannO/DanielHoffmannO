@@ -32,7 +32,7 @@ function initRepos() {
   function renderFilters(repos) {
     if (!filtersEl) return;
     const langs = [...new Set(repos.map((r) => r.language).filter(Boolean))].sort();
-    const btns = langs.map((l) => `<button class="filter-btn" data-lang="${l}">${l}</button>`).join('');
+    const btns = langs.map((l) => `<button class="filter-btn" data-lang="${escapeHtml(l)}">${escapeHtml(l)}</button>`).join('');
     filtersEl.innerHTML = `<button class="filter-btn active" data-lang="all">todos</button>${btns}`;
     filtersEl.querySelectorAll('.filter-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -130,10 +130,4 @@ function showError(el, html) {
   if (!el) return;
   el.style.display = 'block';
   el.innerHTML = html;
-}
-
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.appendChild(document.createTextNode(text));
-  return div.innerHTML;
 }

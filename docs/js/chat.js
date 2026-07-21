@@ -1,17 +1,14 @@
 'use strict';
 
 (function() {
-  const API = 'https://daniel-chat-api.vercel.app/';
+  const API = CONFIG.chat.api;
   const msgs = document.getElementById('messages');
   const input = document.getElementById('input');
   const sendBtn = document.getElementById('send-btn');
   const sugg = document.getElementById('suggestions');
   let count = 0, MAX = 20;
 
-  const ctrl = new AbortController();
-  setTimeout(() => ctrl.abort(), 3000);
-  fetch(API + 'api/health', { signal: ctrl.signal })
-    .then(r => { if (r.ok) return r.json(); throw new Error(); })
+  checkChatHealth()
     .then(() => {
       document.getElementById('chat-app').style.display = 'flex';
       addMsg('bot', '> Assistente iniciado. Pergunte sobre experiência, projetos ou formação do Daniel.');

@@ -13,13 +13,13 @@ function initCerts() {
     list.innerHTML = filtered.map((cert, i) => `
       <article class="cert-item reveal visible" style="animation-delay:${i * 40}ms">
         <div class="cert-header">
-          <span class="cert-title">${cert.title}</span>
-          ${cert.url ? `<a href="${cert.url}" target="_blank" rel="noopener" class="cert-link">[ver]</a>` : ''}
+          <span class="cert-title">${escapeHtml(cert.title)}</span>
+          ${cert.url ? `<a href="${escapeHtml(cert.url)}" target="_blank" rel="noopener" class="cert-link">[ver]</a>` : ''}
         </div>
         <div class="cert-meta">
-          <span class="cert-issuer">${cert.issuer}</span>
-          <span class="cert-date">${cert.date}</span>
-          <span class="cert-cat tag">${cert.category}</span>
+          <span class="cert-issuer">${escapeHtml(cert.issuer)}</span>
+          <span class="cert-date">${escapeHtml(cert.date)}</span>
+          <span class="cert-cat tag">${escapeHtml(cert.category)}</span>
         </div>
       </article>`).join('');
   }

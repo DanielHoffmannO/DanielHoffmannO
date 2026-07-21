@@ -1,0 +1,429 @@
+From fdfeef491120e5dc189c358415cb87bb58f97741 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Tue, 21 Jul 2026 01:46:13 +0000
+Subject: [PATCH] perf: carregar scripts em paralelo via defer e remover
+ bootstrap.js
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- Substitui o loader sequencial em bootstrap.js por tags <script defer>,
+  que baixam os 11 arquivos em paralelo mantendo a ordem de execução.
+- Extrai o health-check do chat (duplicado em layout.js e chat.js) para
+  checkChatHealth() em config.js.
+- Extrai escapeHtml() para config.js e passa a usá-lo também em certs.js
+  e nos filtros de linguagem de repos.js, padronizando o escape de HTML
+  já usado nos nomes/descrições de repositório.
+- Adiciona Twitter Card em todas as páginas e JSON-LD (schema.org Person)
+  na home, para melhorar preview em redes sociais e SEO.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01KD2MBKrxFxv6ZyUMxFDJjM
+---
+ docs/404.html             | 12 +++++++++++-
+ docs/certificados.html    | 16 +++++++++++++++-
+ docs/chat.html            | 18 ++++++++++++++++--
+ docs/contato.html         | 16 +++++++++++++++-
+ docs/index.html           | 30 +++++++++++++++++++++++++++++-
+ docs/js/bootstrap.js      | 29 -----------------------------
+ docs/js/chat.js           |  7 ++-----
+ docs/js/config.js         | 21 +++++++++++++++++++++
+ docs/js/modules/certs.js  | 10 +++++-----
+ docs/js/modules/layout.js |  6 +-----
+ docs/js/modules/repos.js  |  8 +-------
+ docs/projetos.html        | 16 +++++++++++++++-
+ docs/sobre.html           | 16 +++++++++++++++-
+ 13 files changed, 146 insertions(+), 59 deletions(-)
+ delete mode 100644 docs/js/bootstrap.js
+
+diff --git a/docs/404.html b/docs/404.html
+index d09b624..235b7cc 100644
+--- a/docs/404.html
++++ b/docs/404.html
+@@ -51,6 +51,16 @@
+     </div>
+   </main>
+ 
+-  <script src="js/bootstrap.js"></script>
++  <script src="js/config.js" defer></script>
++  <script src="js/i18n-data.js" defer></script>
++  <script src="js/certs-data.js" defer></script>
++  <script src="js/modules/layout.js" defer></script>
++  <script src="js/modules/theme.js" defer></script>
++  <script src="js/modules/i18n.js" defer></script>
++  <script src="js/modules/menu.js" defer></script>
++  <script src="js/modules/reveal.js" defer></script>
++  <script src="js/modules/repos.js" defer></script>
++  <script src="js/modules/certs.js" defer></script>
++  <script src="js/app.js" defer></script>
+ </body>
+ </html>
+diff --git a/docs/certificados.html b/docs/certificados.html
+index 33632c4..b619f36 100644
+--- a/docs/certificados.html
++++ b/docs/certificados.html
+@@ -12,6 +12,10 @@
+   <meta property="og:type" content="website">
+   <meta property="og:url" content="https://danielhoffmanno.github.io/DanielHoffmannO/certificados.html">
+   <meta property="og:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
++  <meta name="twitter:card" content="summary_large_image">
++  <meta name="twitter:title" content="Certificados — Daniel Hoffmann">
++  <meta name="twitter:description" content="Certificados e cursos concluídos por Daniel Hoffmann em desenvolvimento, DevOps e robótica.">
++  <meta name="twitter:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
+   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+@@ -50,6 +54,16 @@
+     </div>
+   </main>
+ 
+-  <script src="js/bootstrap.js"></script>
++  <script src="js/config.js" defer></script>
++  <script src="js/i18n-data.js" defer></script>
++  <script src="js/certs-data.js" defer></script>
++  <script src="js/modules/layout.js" defer></script>
++  <script src="js/modules/theme.js" defer></script>
++  <script src="js/modules/i18n.js" defer></script>
++  <script src="js/modules/menu.js" defer></script>
++  <script src="js/modules/reveal.js" defer></script>
++  <script src="js/modules/repos.js" defer></script>
++  <script src="js/modules/certs.js" defer></script>
++  <script src="js/app.js" defer></script>
+ </body>
+ </html>
+diff --git a/docs/chat.html b/docs/chat.html
+index 3df31c5..7b22b57 100644
+--- a/docs/chat.html
++++ b/docs/chat.html
+@@ -12,6 +12,10 @@
+   <meta property="og:type" content="website">
+   <meta property="og:url" content="https://danielhoffmanno.github.io/DanielHoffmannO/chat.html">
+   <meta property="og:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
++  <meta name="twitter:card" content="summary_large_image">
++  <meta name="twitter:title" content="Chat IA — Daniel Hoffmann">
++  <meta name="twitter:description" content="Converse com uma IA sobre a experiência profissional de Daniel Hoffmann.">
++  <meta name="twitter:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
+   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+@@ -47,7 +51,17 @@
+     </div>
+   </main>
+ 
+-  <script src="js/bootstrap.js"></script>
+-  <script src="js/chat.js"></script>
++  <script src="js/config.js" defer></script>
++  <script src="js/i18n-data.js" defer></script>
++  <script src="js/certs-data.js" defer></script>
++  <script src="js/modules/layout.js" defer></script>
++  <script src="js/modules/theme.js" defer></script>
++  <script src="js/modules/i18n.js" defer></script>
++  <script src="js/modules/menu.js" defer></script>
++  <script src="js/modules/reveal.js" defer></script>
++  <script src="js/modules/repos.js" defer></script>
++  <script src="js/modules/certs.js" defer></script>
++  <script src="js/app.js" defer></script>
++  <script src="js/chat.js" defer></script>
+ </body>
+ </html>
+diff --git a/docs/contato.html b/docs/contato.html
+index 724effb..970e4ab 100644
+--- a/docs/contato.html
++++ b/docs/contato.html
+@@ -12,6 +12,10 @@
+   <meta property="og:type" content="website">
+   <meta property="og:url" content="https://danielhoffmanno.github.io/DanielHoffmannO/contato.html">
+   <meta property="og:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
++  <meta name="twitter:card" content="summary_large_image">
++  <meta name="twitter:title" content="Contato — Daniel Hoffmann">
++  <meta name="twitter:description" content="Entre em contato com Daniel Hoffmann — e-mail, WhatsApp, LinkedIn, GitHub e download de currículo.">
++  <meta name="twitter:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
+   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+@@ -73,6 +77,16 @@
+     </div>
+   </main>
+ 
+-  <script src="js/bootstrap.js"></script>
++  <script src="js/config.js" defer></script>
++  <script src="js/i18n-data.js" defer></script>
++  <script src="js/certs-data.js" defer></script>
++  <script src="js/modules/layout.js" defer></script>
++  <script src="js/modules/theme.js" defer></script>
++  <script src="js/modules/i18n.js" defer></script>
++  <script src="js/modules/menu.js" defer></script>
++  <script src="js/modules/reveal.js" defer></script>
++  <script src="js/modules/repos.js" defer></script>
++  <script src="js/modules/certs.js" defer></script>
++  <script src="js/app.js" defer></script>
+ </body>
+ </html>
+diff --git a/docs/index.html b/docs/index.html
+index 4a9400d..445ef2e 100644
+--- a/docs/index.html
++++ b/docs/index.html
+@@ -13,6 +13,24 @@
+   <meta property="og:url" content="https://danielhoffmanno.github.io/DanielHoffmannO/">
+   <meta property="og:locale" content="pt_BR">
+   <meta property="og:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
++  <meta name="twitter:card" content="summary_large_image">
++  <meta name="twitter:title" content="Daniel Hoffmann — Desenvolvedor Full Stack">
++  <meta name="twitter:description" content="Desenvolvedor Full Stack com experiência em C#/.NET, Clean Architecture e robótica competitiva internacional.">
++  <meta name="twitter:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
++  <script type="application/ld+json">
++  {
++    "@context": "https://schema.org",
++    "@type": "Person",
++    "name": "Daniel Hoffmann",
++    "url": "https://danielhoffmanno.github.io/DanielHoffmannO/",
++    "jobTitle": "Desenvolvedor Full Stack",
++    "alumniOf": "UNINTER",
++    "sameAs": [
++      "https://www.linkedin.com/in/daniel-hoffmann-bonicio/",
++      "https://github.com/DanielHoffmannO"
++    ]
++  }
++  </script>
+   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+@@ -66,6 +84,16 @@
+     </div>
+   </main>
+ 
+-  <script src="js/bootstrap.js"></script>
++  <script src="js/config.js" defer></script>
++  <script src="js/i18n-data.js" defer></script>
++  <script src="js/certs-data.js" defer></script>
++  <script src="js/modules/layout.js" defer></script>
++  <script src="js/modules/theme.js" defer></script>
++  <script src="js/modules/i18n.js" defer></script>
++  <script src="js/modules/menu.js" defer></script>
++  <script src="js/modules/reveal.js" defer></script>
++  <script src="js/modules/repos.js" defer></script>
++  <script src="js/modules/certs.js" defer></script>
++  <script src="js/app.js" defer></script>
+ </body>
+ </html>
+diff --git a/docs/js/bootstrap.js b/docs/js/bootstrap.js
+deleted file mode 100644
+index 58f7004..0000000
+--- a/docs/js/bootstrap.js
++++ /dev/null
+@@ -1,29 +0,0 @@
+-'use strict';
+-
+-(function () {
+-  const scripts = [
+-    'js/config.js',
+-    'js/i18n-data.js',
+-    'js/certs-data.js',
+-    'js/modules/layout.js',
+-    'js/modules/theme.js',
+-    'js/modules/i18n.js',
+-    'js/modules/menu.js',
+-    'js/modules/reveal.js',
+-    'js/modules/repos.js',
+-    'js/modules/certs.js',
+-    'js/app.js',
+-  ];
+-
+-  let loaded = 0;
+-
+-  function loadNext() {
+-    if (loaded >= scripts.length) return;
+-    const script = document.createElement('script');
+-    script.src = scripts[loaded];
+-    script.onload = () => { loaded++; loadNext(); };
+-    document.head.appendChild(script);
+-  }
+-
+-  loadNext();
+-})();
+diff --git a/docs/js/chat.js b/docs/js/chat.js
+index 6339c4d..0d96068 100644
+--- a/docs/js/chat.js
++++ b/docs/js/chat.js
+@@ -1,17 +1,14 @@
+ 'use strict';
+ 
+ (function() {
+-  const API = 'https://daniel-chat-api.vercel.app/';
++  const API = CONFIG.chat.api;
+   const msgs = document.getElementById('messages');
+   const input = document.getElementById('input');
+   const sendBtn = document.getElementById('send-btn');
+   const sugg = document.getElementById('suggestions');
+   let count = 0, MAX = 20;
+ 
+-  const ctrl = new AbortController();
+-  setTimeout(() => ctrl.abort(), 3000);
+-  fetch(API + 'api/health', { signal: ctrl.signal })
+-    .then(r => { if (r.ok) return r.json(); throw new Error(); })
++  checkChatHealth()
+     .then(() => {
+       document.getElementById('chat-app').style.display = 'flex';
+       addMsg('bot', '> Assistente iniciado. Pergunte sobre experiência, projetos ou formação do Daniel.');
+diff --git a/docs/js/config.js b/docs/js/config.js
+index 5bbe986..e20c250 100644
+--- a/docs/js/config.js
++++ b/docs/js/config.js
+@@ -13,4 +13,25 @@ const CONFIG = Object.freeze({
+     user: 'daniel',
+     host: 'portfolio',
+   },
++  chat: {
++    api: 'https://daniel-chat-api.vercel.app/',
++    healthTimeoutMs: 3000,
++  },
+ });
++
++function checkChatHealth() {
++  const ctrl = new AbortController();
++  const timer = setTimeout(() => ctrl.abort(), CONFIG.chat.healthTimeoutMs);
++  return fetch(CONFIG.chat.api + 'api/health', { signal: ctrl.signal })
++    .then((r) => {
++      if (!r.ok) throw new Error('unhealthy');
++      return true;
++    })
++    .finally(() => clearTimeout(timer));
++}
++
++function escapeHtml(text) {
++  const div = document.createElement('div');
++  div.appendChild(document.createTextNode(text));
++  return div.innerHTML;
++}
+diff --git a/docs/js/modules/certs.js b/docs/js/modules/certs.js
+index 0a45393..6947d62 100644
+--- a/docs/js/modules/certs.js
++++ b/docs/js/modules/certs.js
+@@ -13,13 +13,13 @@ function initCerts() {
+     list.innerHTML = filtered.map((cert, i) => `
+       <article class="cert-item reveal visible" style="animation-delay:${i * 40}ms">
+         <div class="cert-header">
+-          <span class="cert-title">${cert.title}</span>
+-          ${cert.url ? `<a href="${cert.url}" target="_blank" rel="noopener" class="cert-link">[ver]</a>` : ''}
++          <span class="cert-title">${escapeHtml(cert.title)}</span>
++          ${cert.url ? `<a href="${escapeHtml(cert.url)}" target="_blank" rel="noopener" class="cert-link">[ver]</a>` : ''}
+         </div>
+         <div class="cert-meta">
+-          <span class="cert-issuer">${cert.issuer}</span>
+-          <span class="cert-date">${cert.date}</span>
+-          <span class="cert-cat tag">${cert.category}</span>
++          <span class="cert-issuer">${escapeHtml(cert.issuer)}</span>
++          <span class="cert-date">${escapeHtml(cert.date)}</span>
++          <span class="cert-cat tag">${escapeHtml(cert.category)}</span>
+         </div>
+       </article>`).join('');
+   }
+diff --git a/docs/js/modules/layout.js b/docs/js/modules/layout.js
+index 69b7036..67a6df2 100644
+--- a/docs/js/modules/layout.js
++++ b/docs/js/modules/layout.js
+@@ -15,11 +15,7 @@ function initLayout() {
+   ];
+ 
+   // Chat IA: só aparece se o serviço estiver online
+-  const chatUrl = 'https://daniel-chat-api.vercel.app/';
+-  const ctrl = new AbortController();
+-  setTimeout(() => ctrl.abort(), 3000);
+-  fetch(chatUrl + 'api/health', { signal: ctrl.signal })
+-    .then(r => { if (r.ok) return r.json(); throw new Error(); })
++  checkChatHealth()
+     .then(() => addChatLink('chat.html'))
+     .catch(() => {});
+ 
+diff --git a/docs/js/modules/repos.js b/docs/js/modules/repos.js
+index ca91ce4..70dfc5d 100644
+--- a/docs/js/modules/repos.js
++++ b/docs/js/modules/repos.js
+@@ -32,7 +32,7 @@ function initRepos() {
+   function renderFilters(repos) {
+     if (!filtersEl) return;
+     const langs = [...new Set(repos.map((r) => r.language).filter(Boolean))].sort();
+-    const btns = langs.map((l) => `<button class="filter-btn" data-lang="${l}">${l}</button>`).join('');
++    const btns = langs.map((l) => `<button class="filter-btn" data-lang="${escapeHtml(l)}">${escapeHtml(l)}</button>`).join('');
+     filtersEl.innerHTML = `<button class="filter-btn active" data-lang="all">todos</button>${btns}`;
+     filtersEl.querySelectorAll('.filter-btn').forEach((btn) => {
+       btn.addEventListener('click', () => {
+@@ -131,9 +131,3 @@ function showError(el, html) {
+   el.style.display = 'block';
+   el.innerHTML = html;
+ }
+-
+-function escapeHtml(text) {
+-  const div = document.createElement('div');
+-  div.appendChild(document.createTextNode(text));
+-  return div.innerHTML;
+-}
+diff --git a/docs/projetos.html b/docs/projetos.html
+index 81641f0..0a0e134 100644
+--- a/docs/projetos.html
++++ b/docs/projetos.html
+@@ -12,6 +12,10 @@
+   <meta property="og:type" content="website">
+   <meta property="og:url" content="https://danielhoffmanno.github.io/DanielHoffmannO/projetos.html">
+   <meta property="og:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
++  <meta name="twitter:card" content="summary_large_image">
++  <meta name="twitter:title" content="Projetos — Daniel Hoffmann">
++  <meta name="twitter:description" content="Repositórios e projetos open source de Daniel Hoffmann no GitHub.">
++  <meta name="twitter:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
+   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+@@ -50,6 +54,16 @@
+     </div>
+   </main>
+ 
+-  <script src="js/bootstrap.js"></script>
++  <script src="js/config.js" defer></script>
++  <script src="js/i18n-data.js" defer></script>
++  <script src="js/certs-data.js" defer></script>
++  <script src="js/modules/layout.js" defer></script>
++  <script src="js/modules/theme.js" defer></script>
++  <script src="js/modules/i18n.js" defer></script>
++  <script src="js/modules/menu.js" defer></script>
++  <script src="js/modules/reveal.js" defer></script>
++  <script src="js/modules/repos.js" defer></script>
++  <script src="js/modules/certs.js" defer></script>
++  <script src="js/app.js" defer></script>
+ </body>
+ </html>
+diff --git a/docs/sobre.html b/docs/sobre.html
+index 53fe3d7..97af6b1 100644
+--- a/docs/sobre.html
++++ b/docs/sobre.html
+@@ -12,6 +12,10 @@
+   <meta property="og:type" content="website">
+   <meta property="og:url" content="https://danielhoffmanno.github.io/DanielHoffmannO/sobre.html">
+   <meta property="og:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
++  <meta name="twitter:card" content="summary_large_image">
++  <meta name="twitter:title" content="Sobre — Daniel Hoffmann">
++  <meta name="twitter:description" content="Experiência profissional, formação acadêmica e stack técnica de Daniel Hoffmann.">
++  <meta name="twitter:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
+   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+@@ -194,6 +198,16 @@
+     </div>
+   </main>
+ 
+-  <script src="js/bootstrap.js"></script>
++  <script src="js/config.js" defer></script>
++  <script src="js/i18n-data.js" defer></script>
++  <script src="js/certs-data.js" defer></script>
++  <script src="js/modules/layout.js" defer></script>
++  <script src="js/modules/theme.js" defer></script>
++  <script src="js/modules/i18n.js" defer></script>
++  <script src="js/modules/menu.js" defer></script>
++  <script src="js/modules/reveal.js" defer></script>
++  <script src="js/modules/repos.js" defer></script>
++  <script src="js/modules/certs.js" defer></script>
++  <script src="js/app.js" defer></script>
+ </body>
+ </html>
+-- 
+2.43.0
+
