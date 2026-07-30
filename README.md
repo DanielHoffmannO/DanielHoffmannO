@@ -6,7 +6,7 @@
 [![Portfolio](https://img.shields.io/badge/Portfolio-0a0a0a?style=for-the-badge&logo=github-pages&logoColor=00ff41)](https://danielhoffmanno.github.io/DanielHoffmannO/)
 
 ## Sobre  
-Desde os 13 anos mergulhado no mundo da tecnologia, comecei minha jornada na robótica escolar e nunca mais parei! Apaixonado por resolver problemas através do código e compartilhar conhecimento com a comunidade tech.  
+Desde os 11 anos mergulhado no mundo da tecnologia, comecei minha jornada na robótica escolar e nunca mais parei! Apaixonado por resolver problemas através do código e compartilhar conhecimento com a comunidade tech.  
 📺 Veja minha entrevista na [Globo](https://www.youtube.com/watch?v=UgN4oar-Vvg) e no [Canal Futura](https://www.youtube.com/watch?v=q953WxfDzF8)  
 
 ## Minha Jornada 🌍
