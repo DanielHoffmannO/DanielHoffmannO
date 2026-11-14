@@ -5,20 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 — Daniel Hoffmann</title>
   <meta name="description" content="Página não encontrada.">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="robots" content="noindex">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="404" data-path="~/404">
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
   <noscript>
     <nav style="padding:16px;font-family:monospace">
       <a href="index.html">home</a> | <a href="sobre.html">sobre</a> | <a href="projetos.html">projetos</a> | <a href="certificados.html">certificados</a> | <a href="contato.html">contato</a>
     </nav>
   </noscript>
 
-  <main class="page">
+  <main class="page" id="main" tabindex="-1">
     <div class="term">
       <div class="reveal visible" aria-hidden="true">
         <div class="term-line">
@@ -38,13 +43,14 @@
           <span class="prompt-user">daniel</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-sign-prompt">$</span>
           <span class="cmd">ls ./</span>
         </div>
-        <nav style="margin-top:var(--space-md)">
+        <nav aria-label="Páginas do site" style="margin-top:var(--space-md)">
           <div class="quick-links">
             <a href="index.html"><span class="link-arrow" aria-hidden="true">→</span>home</a>
             <a href="sobre.html"><span class="link-arrow" aria-hidden="true">→</span>sobre</a>
             <a href="projetos.html"><span class="link-arrow" aria-hidden="true">→</span>projetos</a>
             <a href="certificados.html"><span class="link-arrow" aria-hidden="true">→</span>certificados</a>
             <a href="contato.html"><span class="link-arrow" aria-hidden="true">→</span>contato</a>
+            <a href="chat.html"><span class="link-arrow" aria-hidden="true">→</span>chat</a>
           </div>
         </nav>
       </section>
@@ -52,5 +58,6 @@
   </main>
 
   <script src="js/main.js" defer></script>
+  <script>if ('serviceWorker' in navigator && location.protocol === 'https:') window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });</script>
 </body>
 </html>

@@ -2,22 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://danielhoffmanno.github.io/DanielHoffmannO/</loc>
+    <lastmod>2026-11-14</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://danielhoffmanno.github.io/DanielHoffmannO/sobre.html</loc>
+    <lastmod>2026-11-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://danielhoffmanno.github.io/DanielHoffmannO/projetos.html</loc>
+    <lastmod>2026-11-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://danielhoffmanno.github.io/DanielHoffmannO/certificados.html</loc>
+    <lastmod>2026-11-14</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://danielhoffmanno.github.io/DanielHoffmannO/contato.html</loc>
+    <lastmod>2026-11-14</lastmod>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://danielhoffmanno.github.io/DanielHoffmannO/chat.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.5</priority>
   </url>
 </urlset>

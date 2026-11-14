@@ -9,14 +9,27 @@
       <div class="sep-line" aria-hidden="true"><span class="text-muted"># ============================================</span></div>
 
       <section aria-label="Filtros de projetos">
-        <div class="project-filters reveal" id="projectFilters">
+        <div class="project-toolbar reveal">
+          <label class="sr-only" for="repoSearch">Buscar projetos</label>
+          <input type="search" id="repoSearch" class="project-search" placeholder="buscar projetos..." autocomplete="off">
+          <label class="sr-only" for="repoSort">Ordenar por</label>
+          <select id="repoSort" class="project-sort">
+            <option value="featured">destaque + recentes</option>
+            <option value="updated">atualização</option>
+            <option value="stars">estrelas</option>
+            <option value="name">nome</option>
+          </select>
+        </div>
+        <div class="project-filters reveal" id="projectFilters" role="group" aria-label="Filtrar por linguagem">
           <button class="filter-btn active" data-lang="all">todos</button>
         </div>
-        <div class="project-count reveal" id="projectCount"></div>
+        <div class="project-topics reveal" id="projectTopics" role="group" aria-label="Filtrar por topic"></div>
+        <div class="project-count reveal" id="projectCount" role="status" aria-live="polite"></div>
       </section>
 
       <section aria-label="Lista de repositórios GitHub">
         <div class="loading-cursor" id="loadingRepos" role="status" aria-live="polite">fetching repos...</div>
+        <div id="repoSkeleton" aria-hidden="true"><div class="skeleton-item"></div><div class="skeleton-item"></div><div class="skeleton-item"></div></div>
         <div class="error-msg" id="errorRepos" style="display:none" role="alert"></div>
         <div id="repoList"></div>
       </section>

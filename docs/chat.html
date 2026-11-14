@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat IA — Daniel Hoffmann</title>
   <meta name="description" content="Chat com IA sobre Daniel Hoffmann — experiência, projetos e formação.">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="manifest" href="manifest.webmanifest">
   <meta name="author" content="Daniel Hoffmann">
   <link rel="canonical" href="https://danielhoffmanno.github.io/DanielHoffmannO/chat.html">
   <meta property="og:title" content="Chat IA — Daniel Hoffmann">
@@ -19,17 +21,19 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="chat" data-path="~/chat">
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
   <noscript>
     <nav style="padding:16px;font-family:monospace">
       <a href="index.html">home</a> | <a href="sobre.html">sobre</a> | <a href="projetos.html">projetos</a> | <a href="certificados.html">certificados</a> | <a href="contato.html">contato</a>
     </nav>
   </noscript>
 
-  <main class="page">
+  <main class="page" id="main" tabindex="-1">
     <div class="chat-container" id="chat-app" style="display:none">
       <div class="chat-header">
         <div class="term-line" aria-hidden="true">
@@ -37,7 +41,7 @@
           <span class="cmd">./ask-ai --about daniel</span><span class="cursor"></span>
         </div>
       </div>
-      <div class="chat-messages" id="messages"></div>
+      <div class="chat-messages" id="messages" role="log" aria-live="polite" aria-label="Conversa"></div>
       <div class="chat-suggestions" id="suggestions">
         <button onclick="send('Quais tecnologias ele usa?')">$ tech --stack</button>
         <button onclick="send('Fale sobre a robótica')">$ cat robotica.log</button>
@@ -45,13 +49,16 @@
         <button onclick="send('Quais projetos ele tem?')">$ ls projetos/</button>
       </div>
       <div class="chat-input-area">
-        <input type="text" id="input" placeholder="digite sua pergunta..." autocomplete="off">
+        <label class="sr-only" for="input">Sua pergunta</label>
+        <textarea id="input" rows="1" placeholder="digite sua pergunta... (Shift+Enter = nova linha)" autocomplete="off"></textarea>
         <button id="send-btn" onclick="sendInput()">enviar</button>
+        <button id="clear-btn" type="button" aria-label="Limpar conversa">limpar</button>
       </div>
     </div>
   </main>
 
   <script src="js/main.js" defer></script>
   <script src="js/chat.js" defer></script>
+  <script>if ('serviceWorker' in navigator && location.protocol === 'https:') window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });</script>
 </body>
 </html>

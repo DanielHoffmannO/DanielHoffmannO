@@ -37,6 +37,48 @@
           </a>
         </div>
 
+        <button type="button" class="copy-btn" id="copyEmail">$ copiar e-mail</button>
+        <span id="copyStatus" class="text-muted" role="status" aria-live="polite"></span>
+
+        <form id="contactForm" class="contact-form" novalidate>
+          <label for="cfName">nome</label>
+          <input id="cfName" name="name" type="text" required autocomplete="name">
+          <span class="cf-err" id="cfNameErr" role="alert"></span>
+          <label for="cfEmail">seu e-mail</label>
+          <input id="cfEmail" name="email" type="email" required autocomplete="email">
+          <span class="cf-err" id="cfEmailErr" role="alert"></span>
+          <label for="cfSubject">assunto</label>
+          <input id="cfSubject" name="subject" type="text" required>
+          <span class="cf-err" id="cfSubjectErr" role="alert"></span>
+          <label for="cfMsg">mensagem</label>
+          <textarea id="cfMsg" name="message" rows="5" required></textarea>
+          <span class="cf-err" id="cfMsgErr" role="alert"></span>
+          <button type="submit">$ enviar</button>
+        </form>
+        <script>
+        (function(){
+          var MAIL='daniel2001hoffmann@outlook.com';
+          var b=document.getElementById('copyEmail'),st=document.getElementById('copyStatus');
+          b.addEventListener('click',function(){
+            var ok=function(){st.textContent='copiado!';setTimeout(function(){st.textContent='';},2000);};
+            if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(MAIL).then(ok,function(){st.textContent=MAIL;});}
+            else{st.textContent=MAIL;}
+          });
+          var f=document.getElementById('contactForm');
+          function chk(id,eid,test,msg){var el=document.getElementById(id),er=document.getElementById(eid);var bad=!test(el.value.trim());er.textContent=bad?msg:'';el.setAttribute('aria-invalid',bad);return !bad;}
+          f.addEventListener('submit',function(e){
+            e.preventDefault();
+            var a=chk('cfName','cfNameErr',function(v){return v.length>1;},'informe seu nome');
+            var m=chk('cfEmail','cfEmailErr',function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);},'e-mail inválido');
+            var s=chk('cfSubject','cfSubjectErr',function(v){return v.length>0;},'informe o assunto');
+            var g=chk('cfMsg','cfMsgErr',function(v){return v.length>=10;},'mensagem muito curta');
+            if(!(a&&m&&s&&g))return;
+            var body=f.message.value.trim()+'\n\n-- '+f.name.value.trim()+' ('+f.email.value.trim()+')';
+            location.href='mailto:'+MAIL+'?subject='+encodeURIComponent(f.subject.value.trim())+'&body='+encodeURIComponent(body);
+          });
+        })();
+        </script>
+
         <div class="contact-cta">
           <p class="text-green" aria-hidden="true">$</p>
           <p data-i18n="contato.cta">Tem uma proposta ou projeto em mente? Mande um e-mail.</p>

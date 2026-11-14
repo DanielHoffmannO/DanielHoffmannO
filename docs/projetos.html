@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projetos — Daniel Hoffmann</title>
   <meta name="description" content="Repositórios e projetos open source de Daniel Hoffmann no GitHub.">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="manifest" href="manifest.webmanifest">
   <meta name="author" content="Daniel Hoffmann">
   <link rel="canonical" href="https://danielhoffmanno.github.io/DanielHoffmannO/projetos.html">
   <meta property="og:title" content="Projetos — Daniel Hoffmann">
@@ -19,17 +21,19 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="projetos" data-path="~/projetos">
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
   <noscript>
     <nav style="padding:16px;font-family:monospace">
       <a href="index.html">home</a> | <a href="sobre.html">sobre</a> | <a href="projetos.html">projetos</a> | <a href="certificados.html">certificados</a> | <a href="contato.html">contato</a>
     </nav>
   </noscript>
 
-  <main class="page">
+  <main class="page" id="main" tabindex="-1">
     <div class="term">
       <div class="reveal" aria-hidden="true">
         <div class="term-line">
@@ -40,14 +44,27 @@
       <div class="sep-line" aria-hidden="true"><span class="text-muted"># ============================================</span></div>
 
       <section aria-label="Filtros de projetos">
-        <div class="project-filters reveal" id="projectFilters">
+        <div class="project-toolbar reveal">
+          <label class="sr-only" for="repoSearch">Buscar projetos</label>
+          <input type="search" id="repoSearch" class="project-search" placeholder="buscar projetos..." autocomplete="off">
+          <label class="sr-only" for="repoSort">Ordenar por</label>
+          <select id="repoSort" class="project-sort">
+            <option value="featured">destaque + recentes</option>
+            <option value="updated">atualização</option>
+            <option value="stars">estrelas</option>
+            <option value="name">nome</option>
+          </select>
+        </div>
+        <div class="project-filters reveal" id="projectFilters" role="group" aria-label="Filtrar por linguagem">
           <button class="filter-btn active" data-lang="all">todos</button>
         </div>
-        <div class="project-count reveal" id="projectCount"></div>
+        <div class="project-topics reveal" id="projectTopics" role="group" aria-label="Filtrar por topic"></div>
+        <div class="project-count reveal" id="projectCount" role="status" aria-live="polite"></div>
       </section>
 
       <section aria-label="Lista de repositórios GitHub">
         <div class="loading-cursor" id="loadingRepos" role="status" aria-live="polite">fetching repos...</div>
+        <div id="repoSkeleton" aria-hidden="true"><div class="skeleton-item"></div><div class="skeleton-item"></div><div class="skeleton-item"></div></div>
         <div class="error-msg" id="errorRepos" style="display:none" role="alert"></div>
         <div id="repoList"></div>
       </section>
@@ -56,5 +73,6 @@
 
   <script src="js/modules/repos.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script>if ('serviceWorker' in navigator && location.protocol === 'https:') window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });</script>
 </body>
 </html>

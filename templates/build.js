@@ -14,7 +14,10 @@ function renderHead(page) {
     '  <meta name="viewport" content="width=device-width, initial-scale=1.0">',
     `  <title>${page.title}</title>`,
     `  <meta name="description" content="${page.desc}">`,
+    '  <meta name="theme-color" content="#0d1117">',
+    '  <link rel="manifest" href="manifest.webmanifest">',
   ];
+  if (page.noindex) lines.push('  <meta name="robots" content="noindex">');
 
   if (page.seo) {
     const ogDesc = page.ogDesc || page.desc;
@@ -44,6 +47,7 @@ function renderHead(page) {
     "  <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>\">",
     '  <link rel="preconnect" href="https://fonts.googleapis.com">',
     '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+    '  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">',
     '  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">',
     '  <link rel="stylesheet" href="css/style.css">',
   );
@@ -52,7 +56,9 @@ function renderHead(page) {
 }
 
 for (const page of pages) {
-  const mainHtml = fs.readFileSync(path.join(__dirname, 'pages', page.file.replace('.html', '.main.html')), 'utf8').replace(/\n$/, '');
+  const mainHtml = fs.readFileSync(path.join(__dirname, 'pages', page.file.replace('.html', '.main.html')), 'utf8')
+    .replace(/\n$/, '')
+    .replace('<main class="page">', '<main class="page" id="main" tabindex="-1">');
   const scripts = page.scripts.map((s) => `  <script src="${s}" defer></script>`).join('\n');
 
   const html = `<!DOCTYPE html>
@@ -61,11 +67,13 @@ for (const page of pages) {
 ${renderHead(page)}
 </head>
 <body data-page="${page.dataPage}" data-path="${page.dataPath}">
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
 ${noscriptNav}
 
 ${mainHtml}
 
 ${scripts}
+  <script>if ('serviceWorker' in navigator && location.protocol === 'https:') window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });</script>
 </body>
 </html>
 `;
@@ -73,3 +81,19 @@ ${scripts}
   fs.writeFileSync(path.join(ROOT, 'docs', page.file), html);
   console.log('built', page.file);
 }
+
+// sitemap.xml com lastmod (data do build)
+const today = new Date().toISOString().slice(0, 10);
+const urls = pages.filter((p) => p.seo && !p.noindex);
+const prio = { 'index.html': '1.0', 'sobre.html': '0.8', 'projetos.html': '0.8', 'certificados.html': '0.7', 'contato.html': '0.6' };
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((p) => `  <url>
+    <loc>${p.canonical}</loc>
+    <lastmod>${today}</lastmod>
+    <priority>${prio[p.file] || '0.5'}</priority>
+  </url>`).join('\n')}
+</urlset>
+`;
+fs.writeFileSync(path.join(ROOT, 'docs', 'sitemap.xml'), sitemap);
+console.log('built sitemap.xml');

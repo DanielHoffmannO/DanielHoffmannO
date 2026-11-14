@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daniel Hoffmann — Desenvolvedor Full Stack</title>
   <meta name="description" content="Portfolio de Daniel Hoffmann — Desenvolvedor Full Stack com experiência em C#/.NET, Clean Architecture e robótica competitiva internacional.">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="manifest" href="manifest.webmanifest">
   <meta name="author" content="Daniel Hoffmann">
   <link rel="canonical" href="https://danielhoffmanno.github.io/DanielHoffmannO/">
   <meta property="og:title" content="Daniel Hoffmann — Desenvolvedor Full Stack">
@@ -18,33 +20,44 @@
   <meta name="twitter:description" content="Desenvolvedor Full Stack com experiência em C#/.NET, Clean Architecture e robótica competitiva internacional.">
   <meta name="twitter:image" content="https://danielhoffmanno.github.io/DanielHoffmannO/assets/og-card.svg">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Daniel Hoffmann",
-    "url": "https://danielhoffmanno.github.io/DanielHoffmannO/",
-    "jobTitle": "Desenvolvedor Full Stack",
-    "alumniOf": "UNINTER",
-    "sameAs": [
-      "https://www.linkedin.com/in/daniel-hoffmann-bonicio/",
-      "https://github.com/DanielHoffmannO"
-    ]
-  }
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Daniel Hoffmann",
+      "url": "https://danielhoffmanno.github.io/DanielHoffmannO/",
+      "jobTitle": "Desenvolvedor Full Stack",
+      "alumniOf": "UNINTER",
+      "sameAs": [
+        "https://www.linkedin.com/in/daniel-hoffmann-bonicio/",
+        "https://github.com/DanielHoffmannO"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Daniel Hoffmann — Portfolio",
+      "url": "https://danielhoffmanno.github.io/DanielHoffmannO/",
+      "inLanguage": "pt-BR"
+    }
+  ]
   </script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="home" data-path="~">
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
   <noscript>
     <nav style="padding:16px;font-family:monospace">
       <a href="index.html">home</a> | <a href="sobre.html">sobre</a> | <a href="projetos.html">projetos</a> | <a href="certificados.html">certificados</a> | <a href="contato.html">contato</a>
     </nav>
   </noscript>
 
-  <main class="page">
+  <main class="page" id="main" tabindex="-1">
     <div class="term">
       <section class="hero-cmds" aria-label="Apresentação">
         <div class="term-line reveal" aria-hidden="true">
@@ -85,5 +98,6 @@
   </main>
 
   <script src="js/main.js" defer></script>
+  <script>if ('serviceWorker' in navigator && location.protocol === 'https:') window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });</script>
 </body>
 </html>

@@ -14,7 +14,15 @@
           <button class="filter-btn" data-filter="backend">backend</button>
           <button class="filter-btn" data-filter="frontend">frontend</button>
         </div>
-        <div class="cert-count reveal" id="certCount"></div>
+        <div class="cert-tools reveal">
+          <label class="sr-only" for="certSearch">Buscar certificados</label>
+          <input type="search" id="certSearch" placeholder="buscar..." autocomplete="off">
+          <label class="sr-only" for="certIssuer">Emissor</label>
+          <select id="certIssuer"><option value="all">todos emissores</option></select>
+          <label class="sr-only" for="certSort">Ordenar por data</label>
+          <select id="certSort"><option value="desc">mais recentes</option><option value="asc">mais antigos</option></select>
+        </div>
+        <div class="cert-count reveal" id="certCount" role="status" aria-live="polite"></div>
       </section>
 
       <section aria-label="Lista de certificados">
