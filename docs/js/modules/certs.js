@@ -6,9 +6,23 @@ function initCerts() {
 
   const countEl = document.getElementById('certCount');
   let activeFilter = 'all';
+  const searchEl = document.getElementById('certSearch');
+  const issuerEl = document.getElementById('certIssuer');
+  const sortEl = document.getElementById('certSort');
+  if (issuerEl) {
+    [...new Set(CERTS_DATA.map((c) => c.issuer))].sort().forEach((i) => {
+      const o = document.createElement('option'); o.value = i; o.textContent = i; issuerEl.appendChild(o);
+    });
+  }
 
   function render(filter) {
-    const filtered = filter === 'all' ? CERTS_DATA : CERTS_DATA.filter((c) => c.category === filter);
+    const q = searchEl ? searchEl.value.trim().toLowerCase() : '';
+    const issuer = issuerEl ? issuerEl.value : 'all';
+    const dir = sortEl && sortEl.value === 'asc' ? 1 : -1;
+    const filtered = CERTS_DATA
+      .filter((c) => (filter === 'all' || c.category === filter) && (issuer === 'all' || c.issuer === issuer) &&
+        (!q || (c.title + ' ' + c.issuer).toLowerCase().includes(q)))
+      .sort((a, b) => dir * String(a.date).localeCompare(String(b.date)));
     if (countEl) countEl.textContent = `# ${filtered.length} certificado${filtered.length !== 1 ? 's' : ''} encontrado${filtered.length !== 1 ? 's' : ''}`;
     list.innerHTML = filtered.map((cert, i) => `
       <article class="cert-item reveal visible" style="animation-delay:${i * 40}ms">
@@ -31,6 +45,10 @@ function initCerts() {
       activeFilter = btn.dataset.filter;
       render(activeFilter);
     });
+  });
+
+  [searchEl, issuerEl, sortEl].forEach((el) => {
+    if (el) el.addEventListener(el === searchEl ? 'input' : 'change', () => render(activeFilter));
   });
 
   render(activeFilter);

@@ -1,4 +1,4 @@
-  <main class="page">
+  <main class="page" id="main" tabindex="-1">
     <div class="chat-container" id="chat-app" style="display:none">
       <div class="chat-header">
         <div class="term-line" aria-hidden="true">
@@ -6,7 +6,7 @@
           <span class="cmd">./ask-ai --about daniel</span><span class="cursor"></span>
         </div>
       </div>
-      <div class="chat-messages" id="messages"></div>
+      <div class="chat-messages" id="messages" role="log" aria-live="polite" aria-label="Conversa"></div>
       <div class="chat-suggestions" id="suggestions">
         <button onclick="send('Quais tecnologias ele usa?')">$ tech --stack</button>
         <button onclick="send('Fale sobre a robótica')">$ cat robotica.log</button>
@@ -14,8 +14,10 @@
         <button onclick="send('Quais projetos ele tem?')">$ ls projetos/</button>
       </div>
       <div class="chat-input-area">
-        <input type="text" id="input" placeholder="digite sua pergunta..." autocomplete="off">
+        <label class="sr-only" for="input">Sua pergunta</label>
+        <textarea id="input" rows="1" placeholder="digite sua pergunta... (Shift+Enter = nova linha)" autocomplete="off"></textarea>
         <button id="send-btn" onclick="sendInput()">enviar</button>
+        <button id="clear-btn" type="button" aria-label="Limpar conversa">limpar</button>
       </div>
     </div>
   </main>

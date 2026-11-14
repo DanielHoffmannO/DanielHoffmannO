@@ -302,3 +302,57 @@ body::after {
 .chat-input-area button:disabled, .chat-input-area input:disabled { opacity: 0.4; cursor: not-allowed; }
 @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+
+/* UI: acessibilidade, movimento reduzido e impressão */
+.skip-link {
+  position: absolute; left: var(--space-sm); top: -100px; z-index: 1000;
+  background: var(--color-bg-dim); color: var(--color-green);
+  border: 1px solid var(--color-green); padding: var(--space-sm) var(--space-md);
+}
+.skip-link:focus { top: var(--space-sm); outline: 2px solid var(--color-cyan); text-decoration: none; }
+:focus-visible { outline: 2px solid var(--color-cyan); outline-offset: 2px; }
+main:focus { outline: none; }
+.action-btn, .menu-btn { transition: background 0.15s, color 0.15s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+@media print {
+  :root, [data-theme="light"] {
+    --color-bg: #fff; --color-bg-dim: #fff; --color-text: #000; --color-green: #000;
+    --color-cyan: #000; --color-amber: #000; --color-muted: #444; --color-dim: #333; --color-border: #999;
+  }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .top-bar, .side-nav, .skip-link, .menu-btn, .action-btn, .footer { display: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
+}
+
+/* === certs-contato-chat === */
+.cert-tools { display: flex; flex-wrap: wrap; gap: var(--space-md); margin: var(--space-md) 0; }
+.cert-tools input, .cert-tools select, .contact-form input, .contact-form textarea, .chat-input-area textarea { background: transparent; border: 1px solid var(--color-green-border); color: inherit; padding: var(--space-sm) var(--space-md); border-radius: 4px; font-family: var(--font-mono); font-size: var(--font-base); }
+.cert-tools select option { background: #111; color: #eee; }
+.copy-btn, .contact-form button { background: var(--color-green-dim); border: 1px solid var(--color-green-border); color: var(--color-green); padding: var(--space-sm) var(--space-lg); border-radius: 4px; cursor: pointer; font-family: var(--font-mono); margin: var(--space-md) 0; }
+.contact-form { display: flex; flex-direction: column; gap: var(--space-sm); max-width: 520px; margin: var(--space-lg) 0; }
+.contact-form input[aria-invalid="true"], .contact-form textarea[aria-invalid="true"] { border-color: #e55; }
+.cf-err { color: #e55; font-size: 0.85em; min-height: 1em; }
+.chat-input-area textarea { flex: 1; resize: none; max-height: 120px; }
+#clear-btn { opacity: 0.8; }
+.chat-msg .retry-btn { margin-left: 8px; background: none; border: 1px solid currentColor; color: inherit; cursor: pointer; font-family: inherit; border-radius: 4px; }
+
+/* === projetos === */
+.project-toolbar { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-md); }
+.project-search, .project-sort { background: var(--color-bg-dim); border: 1px solid var(--color-border); color: var(--color-green); padding: var(--space-sm) var(--space-md); border-radius: 4px; font-family: var(--font-mono); font-size: var(--font-base); }
+.project-search { flex: 1 1 200px; }
+.project-search:focus, .project-sort:focus { outline: 2px solid var(--color-green); outline-offset: 1px; }
+.project-topics { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin: var(--space-sm) 0; }
+.project-topics[hidden] { display: none; }
+.skeleton-item { height: 84px; margin: var(--space-md) 0; border: 1px solid var(--color-border); border-radius: 4px; background: linear-gradient(90deg, var(--color-bg-dim) 25%, var(--color-green-dim) 50%, var(--color-bg-dim) 75%); background-size: 200% 100%; animation: skeletonShimmer 1.4s linear infinite; }
+@keyframes skeletonShimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .skeleton-item { animation: none; } }

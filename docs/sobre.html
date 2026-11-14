@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sobre — Daniel Hoffmann</title>
   <meta name="description" content="Experiência profissional, formação acadêmica e stack técnica de Daniel Hoffmann.">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="manifest" href="manifest.webmanifest">
   <meta name="author" content="Daniel Hoffmann">
   <link rel="canonical" href="https://danielhoffmanno.github.io/DanielHoffmannO/sobre.html">
   <meta property="og:title" content="Sobre — Daniel Hoffmann">
@@ -19,17 +21,19 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="sobre" data-path="~/sobre">
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
   <noscript>
     <nav style="padding:16px;font-family:monospace">
       <a href="index.html">home</a> | <a href="sobre.html">sobre</a> | <a href="projetos.html">projetos</a> | <a href="certificados.html">certificados</a> | <a href="contato.html">contato</a>
     </nav>
   </noscript>
 
-  <main class="page">
+  <main class="page" id="main" tabindex="-1">
     <div class="term">
       <div class="reveal" aria-hidden="true">
         <div class="term-line">
@@ -199,5 +203,6 @@
   </main>
 
   <script src="js/main.js" defer></script>
+  <script>if ('serviceWorker' in navigator && location.protocol === 'https:') window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });</script>
 </body>
 </html>

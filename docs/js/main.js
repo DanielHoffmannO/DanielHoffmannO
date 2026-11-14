@@ -22,7 +22,12 @@ const CONFIG = Object.freeze({
 const CHAT_HEALTH_CACHE_KEY = 'chat_health';
 const CHAT_HEALTH_CACHE_TTL = 30000;
 
+let chatHealthPromise;
 function checkChatHealth() {
+  return chatHealthPromise || (chatHealthPromise = fetchChatHealth());
+}
+
+function fetchChatHealth() {
   try {
     const cached = sessionStorage.getItem(CHAT_HEALTH_CACHE_KEY);
     if (cached) {
@@ -180,22 +185,36 @@ function addChatLink(url) {
   if (homeLink) homeLink.style.display = '';
 }
 
+function getSavedTheme() {
+  try { return localStorage.getItem('theme'); } catch (_) { return null; }
+}
+
 function initTheme() {
-  const saved = localStorage.getItem('theme') || 'dark';
-  applyTheme(saved);
+  const saved = getSavedTheme();
+  const prefersLight = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches;
+  applyTheme(saved || (prefersLight ? 'light' : 'dark'));
+  if (window.matchMedia) {
+    matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+      if (!getSavedTheme()) applyTheme(e.matches ? 'light' : 'dark');
+    });
+  }
 }
 
 function toggleTheme() {
   const current = document.documentElement.getAttribute('data-theme') || 'dark';
   const next = current === 'dark' ? 'light' : 'dark';
   applyTheme(next);
-  localStorage.setItem('theme', next);
+  try { localStorage.setItem('theme', next); } catch (_) {}
+  return next;
 }
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   const btn = document.getElementById('themeBtn');
-  if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  if (btn) {
+    btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    btn.setAttribute('aria-pressed', String(theme === 'light'));
+  }
 }
 
 let currentLang = 'pt';
@@ -301,3 +320,21 @@ function initDynamicYears() {
     el.textContent = now - from;
   });
 }
+
+// Easter egg: comandos no console do navegador (digite portfolio.help())
+window.portfolio = Object.freeze({
+  help() {
+    console.log('%cComandos: portfolio.help() whoami() theme([dark|light]) clear() contact()', 'color:#00ff41');
+  },
+  whoami() {
+    console.log(`${CONFIG.terminal.user}@${CONFIG.terminal.host} — Desenvolvedor Full Stack (C#/.NET), 3x campeão mundial de robótica`);
+  },
+  theme(name) {
+    const cur = document.documentElement.getAttribute('data-theme');
+    if (name === 'dark' || name === 'light') { if (name !== cur) toggleTheme(); } else toggleTheme();
+    console.log('tema:', document.documentElement.getAttribute('data-theme'));
+  },
+  clear() { console.clear(); },
+  contact() { console.log(CONFIG.social.email, CONFIG.social.linkedin); },
+});
+console.log('%c$ portfolio.help()', 'color:#00ff41;font-family:monospace');

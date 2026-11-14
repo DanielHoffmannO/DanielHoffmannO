@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contato — Daniel Hoffmann</title>
   <meta name="description" content="Entre em contato com Daniel Hoffmann — e-mail, WhatsApp, LinkedIn, GitHub e download de currículo.">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="manifest" href="manifest.webmanifest">
   <meta name="author" content="Daniel Hoffmann">
   <link rel="canonical" href="https://danielhoffmanno.github.io/DanielHoffmannO/contato.html">
   <meta property="og:title" content="Contato — Daniel Hoffmann">
@@ -19,17 +21,19 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟩</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="contato" data-path="~/contato">
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
   <noscript>
     <nav style="padding:16px;font-family:monospace">
       <a href="index.html">home</a> | <a href="sobre.html">sobre</a> | <a href="projetos.html">projetos</a> | <a href="certificados.html">certificados</a> | <a href="contato.html">contato</a>
     </nav>
   </noscript>
 
-  <main class="page">
+  <main class="page" id="main" tabindex="-1">
     <div class="term">
       <div class="reveal" aria-hidden="true">
         <div class="term-line">
@@ -68,6 +72,48 @@
           </a>
         </div>
 
+        <button type="button" class="copy-btn" id="copyEmail">$ copiar e-mail</button>
+        <span id="copyStatus" class="text-muted" role="status" aria-live="polite"></span>
+
+        <form id="contactForm" class="contact-form" novalidate>
+          <label for="cfName">nome</label>
+          <input id="cfName" name="name" type="text" required autocomplete="name">
+          <span class="cf-err" id="cfNameErr" role="alert"></span>
+          <label for="cfEmail">seu e-mail</label>
+          <input id="cfEmail" name="email" type="email" required autocomplete="email">
+          <span class="cf-err" id="cfEmailErr" role="alert"></span>
+          <label for="cfSubject">assunto</label>
+          <input id="cfSubject" name="subject" type="text" required>
+          <span class="cf-err" id="cfSubjectErr" role="alert"></span>
+          <label for="cfMsg">mensagem</label>
+          <textarea id="cfMsg" name="message" rows="5" required></textarea>
+          <span class="cf-err" id="cfMsgErr" role="alert"></span>
+          <button type="submit">$ enviar</button>
+        </form>
+        <script>
+        (function(){
+          var MAIL='daniel2001hoffmann@outlook.com';
+          var b=document.getElementById('copyEmail'),st=document.getElementById('copyStatus');
+          b.addEventListener('click',function(){
+            var ok=function(){st.textContent='copiado!';setTimeout(function(){st.textContent='';},2000);};
+            if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(MAIL).then(ok,function(){st.textContent=MAIL;});}
+            else{st.textContent=MAIL;}
+          });
+          var f=document.getElementById('contactForm');
+          function chk(id,eid,test,msg){var el=document.getElementById(id),er=document.getElementById(eid);var bad=!test(el.value.trim());er.textContent=bad?msg:'';el.setAttribute('aria-invalid',bad);return !bad;}
+          f.addEventListener('submit',function(e){
+            e.preventDefault();
+            var a=chk('cfName','cfNameErr',function(v){return v.length>1;},'informe seu nome');
+            var m=chk('cfEmail','cfEmailErr',function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);},'e-mail inválido');
+            var s=chk('cfSubject','cfSubjectErr',function(v){return v.length>0;},'informe o assunto');
+            var g=chk('cfMsg','cfMsgErr',function(v){return v.length>=10;},'mensagem muito curta');
+            if(!(a&&m&&s&&g))return;
+            var body=f.message.value.trim()+'\n\n-- '+f.name.value.trim()+' ('+f.email.value.trim()+')';
+            location.href='mailto:'+MAIL+'?subject='+encodeURIComponent(f.subject.value.trim())+'&body='+encodeURIComponent(body);
+          });
+        })();
+        </script>
+
         <div class="contact-cta">
           <p class="text-green" aria-hidden="true">$</p>
           <p data-i18n="contato.cta">Tem uma proposta ou projeto em mente? Mande um e-mail.</p>
@@ -78,5 +124,6 @@
   </main>
 
   <script src="js/main.js" defer></script>
+  <script>if ('serviceWorker' in navigator && location.protocol === 'https:') window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });</script>
 </body>
 </html>
