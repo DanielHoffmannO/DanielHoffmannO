@@ -22,7 +22,12 @@ const CONFIG = Object.freeze({
 const CHAT_HEALTH_CACHE_KEY = 'chat_health';
 const CHAT_HEALTH_CACHE_TTL = 30000;
 
+let chatHealthPromise;
 function checkChatHealth() {
+  return chatHealthPromise || (chatHealthPromise = fetchChatHealth());
+}
+
+function fetchChatHealth() {
   try {
     const cached = sessionStorage.getItem(CHAT_HEALTH_CACHE_KEY);
     if (cached) {

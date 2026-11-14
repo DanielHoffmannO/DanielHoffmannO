@@ -18,8 +18,9 @@ self.addEventListener('fetch', (e) => {
   e.respondWith(
     caches.open(CACHE).then(async (c) => {
       const hit = await c.match(req, { ignoreSearch: true });
-      const net = fetch(req).then((r) => { if (r.ok) c.put(req, r.clone()); return r; }).catch(() => hit || c.match('404.html'));
-      return hit || net;
+      const net = fetch(req).then((r) => { if (r.ok) c.put(req, r.clone()); return r; });
+      if (hit) { e.waitUntil(net.catch(() => {})); return hit; }
+      return net.catch(() => c.match('404.html'));
     })
   );
 });

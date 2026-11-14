@@ -186,7 +186,7 @@ async function getRepos(username) {
   try {
     const res = await fetch(`https://api.github.com/users/${encodeURIComponent(username)}/repos?per_page=100&sort=pushed`);
     if (!res.ok) {
-      const limited = res.status === 429 || (res.status === 403 && res.headers.get('x-ratelimit-remaining') === '0') || res.status === 403;
+      const limited = res.status === 429 || res.status === 403;
       throw new Error(limited ? 'rate-limit' : `HTTP ${res.status}`);
     }
     const raw = await res.json();

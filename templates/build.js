@@ -56,9 +56,7 @@ function renderHead(page) {
 }
 
 for (const page of pages) {
-  const mainHtml = fs.readFileSync(path.join(__dirname, 'pages', page.file.replace('.html', '.main.html')), 'utf8')
-    .replace(/\n$/, '')
-    .replace('<main class="page">', '<main class="page" id="main" tabindex="-1">');
+  const mainHtml = fs.readFileSync(path.join(__dirname, 'pages', page.file.replace('.html', '.main.html')), 'utf8').replace(/\n$/, '');
   const scripts = page.scripts.map((s) => `  <script src="${s}" defer></script>`).join('\n');
 
   const html = `<!DOCTYPE html>

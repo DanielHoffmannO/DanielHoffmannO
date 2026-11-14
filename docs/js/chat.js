@@ -24,7 +24,8 @@
       const d = JSON.parse(sessionStorage.getItem(KEY) || 'null');
       if (!d || !d.history || !d.history.length) return false;
       count = d.count || 0;
-      d.history.forEach((m) => addMsg(m.type, m.text));
+      history = d.history.slice();
+      history.forEach((m) => addMsg(m.type, m.text, false));
       if (count > 0) sugg.style.display = 'none';
       if (count >= MAX) { input.disabled = true; sendBtn.disabled = true; }
       return true;
